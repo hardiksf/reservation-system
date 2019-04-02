@@ -1,0 +1,36 @@
+{
+    "name": "reservation-system",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "webpack",
+        "dev-server": "nodemon bin/dev localhost 8080",
+        "dev-client": "webpack-dev-server --port 3000"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-preset-env": "^1.7.0",
+        "babel-register": "^6.26.0",
+        "clean-webpack-plugin": "^1.0.0",
+        "css-loader": "^2.1.0",
+        "dot-json": "^1.1.0",
+        "html-webpack-plugin": "^3.2.0",
+        "lit-html": "^1.0.0",
+        "node-sass": "^4.11.0",
+        "nodemon": "^1.18.10",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
+        "webpack": "^4.28.4",
+        "webpack-cli": "^3.1.2",
+        "webpack-dev-server": "^3.1.14"
+    },
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "express": "^4.16.4",
+        "lit-element": "^2.0.1"
+    }
+}
