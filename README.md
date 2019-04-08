@@ -27,6 +27,7 @@
 * `babel` to transpile code for `node.js`
 * `SASS` for design
 * Posts data to server via `fetch`
+* `Responsive` design
 
 ## Demo
 ![Reservation System](https://github.com/hardiksf/reservation-system/blob/master/reservation-system.gif)
