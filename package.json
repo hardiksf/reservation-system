@@ -1,7 +1,7 @@
 {
     "name": "reservation-system",
     "version": "1.0.0",
-    "description": "",
+    "description": "Reservation System",
     "main": "index.js",
     "scripts": {
         "start": "webpack",
@@ -9,7 +9,7 @@
         "dev-client": "webpack-dev-server --port 3000"
     },
     "keywords": [],
-    "author": "",
+    "author": "Hardik Patel",
     "license": "ISC",
     "devDependencies": {
         "babel-cli": "^6.26.0",
@@ -17,7 +17,6 @@
         "babel-register": "^6.26.0",
         "clean-webpack-plugin": "^1.0.0",
         "css-loader": "^2.1.0",
-        "dot-json": "^1.1.0",
         "html-webpack-plugin": "^3.2.0",
         "lit-html": "^1.0.0",
         "node-sass": "^4.11.0",

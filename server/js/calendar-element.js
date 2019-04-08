@@ -1,4 +1,5 @@
 import { LitElement, html } from 'lit-element';
+
 class calendarElement extends LitElement {
     static get properties() {
         return {
@@ -28,29 +29,12 @@ class calendarElement extends LitElement {
                     ${this.populateCells().map(
                         date =>
                             html`
-                                <span class="date"><button>${date}</button></span>
+                                <span class="date reserved${date}"><button>${date}</button></span>
                             `,
                     )}
                 </div>
-                <div class="buttons">
-                    <button class="previous" @click="${this.previousButtonHandler}">
-                        Previous
-                    </button>
-                    <button class="next" @click="${this.nextButtonHandler}">
-                        Next
-                    </button>
-                </div>
             </div>
         `;
-    }
-
-    nextButtonHandler(e) {
-        this.date = new Date(this.date.setMonth(this.date.getMonth() + 1));
-        console.log(`=========`, this.date.getMonth(), this.date.getFullYear());
-    }
-
-    previousButtonHandler(e) {
-        this.date = new Date(this.date.setMonth(this.date.getMonth() - 1));
     }
 
     populateCells() {

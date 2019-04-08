@@ -3,11 +3,6 @@ const app = express();
 const port = 8080;
 import fs from 'fs';
 import bookingsJson from '../data/bookings.json';
-// let bookingsJsonFile = require(bookingsJson);
-
-import DotJson from 'dot-json';
-var bookingsDotJson = new DotJson('./server/data/bookings.json');
-import { type } from 'os';
 
 // We need to add some middleware to parse the post data of the body
 const bodyParser = require('body-parser');
@@ -18,9 +13,6 @@ app.use(
         extended: true,
     }),
 );
-
-// app.use(express.json());       // to support JSON-encoded bodies
-// app.use(express.urlencoded())
 
 // CORS on ExpressJS from https://enable-cors.org/server_expressjs.html
 // Bind application-level middleware to an instance of the app object by using the app.use()
@@ -42,7 +34,6 @@ app.post('/', function(req, res, next) {
     const targetedDate = req.body.date;
     console.log(`req.body`, req.body);
 
-    debugger;
     let wasDateRemoved = false;
     for (let i = 0; i < bookingsJson.length; i++) {
         const date = bookingsJson[i].date;
@@ -67,10 +58,6 @@ app.post('/', function(req, res, next) {
             if (error) throw error;
         },
     );
-
-    // console.log(`=====`,EventTarget)
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-
-const bookings = require('../js/bookings'); //By requiring this here, it runs and console.log messages from bookings module can be seen in the dev server log

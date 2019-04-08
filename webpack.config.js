@@ -24,7 +24,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
-            title: 'Calendar',
+            title: 'Reservation System',
             inlineSource: '.(js|css)$' // embed all javascript and css inline
         }),
         new webpack.HotModuleReplacementPlugin({

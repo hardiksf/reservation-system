@@ -1,66 +1,57 @@
 import { html, render } from 'lit-html';
 import '../sass/styles.sass';
-
 import './calendar-element';
+import bookingsJson from '../data/bookings.json';
 
 const renderCalendar = html`
     <my-element></my-element>
 `;
 
+// Renders my-element web component
 render(renderCalendar, document.body);
 
-import bookings from '../js/bookings';
-// bookings;
+let displayedMonth;
+let displayedYear;
+const elementsWithBackgroundColorOnLoad = [];
 
+// Sends clicked date to server
 const handleDateClickEvent = () => {
     const dates = document.querySelectorAll('.date button');
     dates.forEach(date =>
         date.addEventListener('click', event => {
             const targetDate = event.target.innerText;
-            const displayedMonth = document.querySelector(`.month`).innerText;
-            const displayedYear = document.querySelector(`.year`).innerText;
+            displayedMonth = document.querySelector(`.month`).innerText;
             const targetDateInMyFormat = new Date(
                 Date.parse(`${displayedMonth} ${targetDate} ${displayedYear}`),
             );
-            console.log(`targetDateInMyFormat`, targetDateInMyFormat);
-
-            const objectToSend = { date: targetDateInMyFormat, reserved: true };
+            const objectToSend = {
+                date: targetDateInMyFormat,
+                reserved: true,
+            };
             sendRequest(objectToSend);
         }),
     );
 };
 
-const handleNextButtonClickEvent = () => {
-    const nextButton = document.querySelector(`button.next`);
-    nextButton.addEventListener(`click`, () => {
-        sendRequest();
-    });
-};
-
-window.onload = () => {
+// Gets all dates from bookingsJson and highlights it with yellow back ground color
+window.addEventListener('load', event => {
+    displayedMonth = document.querySelector(`.month`).innerText;
+    displayedYear = document.querySelector(`.year`).innerText;
+    for (const element in bookingsJson) {
+        const date = new Date(bookingsJson[element].date);
+        const dateInString = date.getDate().toString();
+        const dateElement = document.querySelector(
+            `.reserved${dateInString} button`,
+        );
+        elementsWithBackgroundColorOnLoad.push(dateElement);
+        dateElement.style.backgroundColor = 'yellow';
+        // }
+    }
     handleDateClickEvent();
-    // handleNextButtonClickEvent();
-};
-
-// handleDateClickEvent;
-// window.onload = handleNextButtonClickEvent;
-
-const test = () =>
-    html`
-        <button class="test">test button</button>
-    `;
-// const test = html `test this`;
-const myTemplate = () =>
-    html`
-        <p>Hello there</p>
-    `;
-// render(test(), document.body);
-
-const testButton = document.querySelector(`button.test`);
+});
 
 // This will send request to dev-server and we can see the data there; app.post() in dev-server.js
-const sendRequest = (requestedData) => {
-    // postData(`http://localhost:8080/`, { answer: 42 })
+const sendRequest = requestedData => {
     postData(`http://localhost:8080/`, requestedData)
         .then(data => console.log(JSON.stringify(data))) // JSON-string from `response.json()` call
         .then(data => console.log(`data`, data))
@@ -85,16 +76,5 @@ const sendRequest = (requestedData) => {
             // response.json()
         ); // parses JSON response into native Javascript objects
     }
-
     console.log(`sends POST request from here`);
 };
-// testButton.addEventListener(`click`, sendRequest);
-
-// function sendRequest(event) {
-//     console.log(`sends`);
-// }
-
-// import bookingsJson from '../data/bookings.json';
-// for (let booking of bookingsJson) {
-//     console.log(booking);
-// }
